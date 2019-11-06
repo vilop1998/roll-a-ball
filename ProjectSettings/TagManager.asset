@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PickUp
   - Wall
+  - Score
   layers:
   - Default
   - TransparentFX
