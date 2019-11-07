@@ -34,17 +34,18 @@ public class PlayerControlerBasicMovement01 : MonoBehaviour
         
     }
     //Estamos comprobando el contacto entre collaider y onTriggers, no hemos especificado ninguno
-    private void OnTriggerEnter(Collider other)
-    {  
+    private void OnTriggerEnter(Collider llave)
+    {
+        GameObject obstaculo = llave.gameObject;
         //Comparo el tag del objeto contra el que he colisionado, para desactivarlo solo en el caso de que sea un pickup
-        if (other.gameObject.CompareTag("PickUp"))
+        if (obstaculo.CompareTag("PickUp"))
         {
             // Si es un PickUp, lo desactivo.
-            other.gameObject.SetActive(false);
-            score = score + 1;
+            obstaculo.SetActive(false);
+            //score = score + 1;
             //SetCountText();
             //score++;
-            score += other.gameObject.GetComponent<RotationCube>().valuePoint;
+            score += obstaculo.GetComponent<RotationCube>().valuePoint;
             scoreText.text = "Score: " + score;
         }
     }
