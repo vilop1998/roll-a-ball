@@ -1,46 +1,59 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerColor : MonoBehaviour
 {
     public Material mainMaterial;
-    public bool isGrounded;
-    Collider mainObjectCollider;
+    
+    Transform mainObjectTransform;
 
     void Start()
     {
         mainMaterial = GetComponent<Renderer>().material;
-        mainObjectCollider = GetComponent<Collider>();
-        mainObjectCollider.isTrigger = false;
+        
+        mainObjectTransform = GetComponent<Transform>();
     }
 
-    private void OnCollisionEnter(Collision boton)
+    private void OnCollisionEnter(Collision col)
     {
-        if (boton.gameObject.CompareTag("Boton"))
+        if (col.gameObject.CompareTag("Boton"))
         {
-            mainMaterial.color = boton.gameObject.GetComponent<Renderer>().material.color;
+            mainMaterial.color = col.gameObject.GetComponent<Renderer>().material.color;
 
         }
 
-    }
-
-    private void OnTriggerEnter(Collider pared)
-    {
-        if (pared.gameObject.CompareTag("ColorWall"))
+        if (col.gameObject.CompareTag("ColorWall"))
         {
-
-            //pared.gameObject.GetComponent<Collider>().isTrigger = true;
-            //Collider.isTrigger = true;
-
-            if (mainMaterial.color == pared.gameObject.GetComponent<Renderer>().material.color)
+            if (mainMaterial.color == col.gameObject.GetComponent<Renderer>().material.color)
             {
 
-                pared.gameObject.GetComponent<Collider>().isTrigger = true;
+                col.gameObject.GetComponent<Collider>().isTrigger = true;
 
             }
         }
 
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.CompareTag("Tp"))
+        {
+            print("Hola"); 
+            //quiero que me cambie la posición pero no lo hace, sin embargo, si me destruye la pelota.
+            Vector3 newPosition = new Vector3(0f, 0f, 0f);
+            mainObjectTransform.position = newPosition;
+        }
+
+    }
+
+    private void OnTriggerExit(Collider col)
+    {
+        if (col.gameObject.CompareTag("ColorWall"))
+        {
+            col.gameObject.GetComponent<Collider>().isTrigger = false;
+        }
     }
 
 }
