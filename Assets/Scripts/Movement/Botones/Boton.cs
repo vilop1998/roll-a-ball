@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class Boton : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Material mainMaterial;
+    /*private void OnCollisionEnter(Collision player)
     {
-        
+        //if (other.gameObject.CompareTag("player"))
+        //{
+            player.gameObject.GetComponent<Material>().color = mainMaterial.color;
+        //}
     }
-
-    // Update is called once per frame
-    void Update()
+    /*private void ChangeColortoPink()
     {
-        
-    }
+        if(Color = 1)
+        {
+            gameObject.GetComponent<Material>().color = Color.magenta;            
+        }
+    }*/
 }

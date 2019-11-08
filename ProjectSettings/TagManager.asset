@@ -7,6 +7,10 @@ TagManager:
   - PickUp
   - Wall
   - Score
+  - Color
+  - Boton
+  - Ground
+  - ColorWall
   layers:
   - Default
   - TransparentFX
