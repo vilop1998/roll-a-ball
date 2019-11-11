@@ -52,6 +52,17 @@ public class PlayerColor : MonoBehaviour
         {
             col.gameObject.GetComponent<Collider>().isTrigger = false;
         }
+
+        if (col.gameObject.CompareTag("Tp"))
+        {
+            if (mainMaterial.color == col.gameObject.GetComponent<Renderer>().material.color)
+            {
+
+                canTp = false;
+
+            }
+        }
     }
+        
 
 }
