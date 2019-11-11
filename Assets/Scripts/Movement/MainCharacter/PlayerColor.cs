@@ -6,14 +6,12 @@ using UnityEngine;
 public class PlayerColor : MonoBehaviour
 {
     public Material mainMaterial;
-    
-    Transform mainObjectTransform;
+    public bool canTp;
 
     void Start()
     {
         mainMaterial = GetComponent<Renderer>().material;
-        
-        mainObjectTransform = GetComponent<Transform>();
+
     }
 
     private void OnCollisionEnter(Collision col)
@@ -33,19 +31,19 @@ public class PlayerColor : MonoBehaviour
 
             }
         }
-
     }
 
-    void OnTriggerEnter(Collider col)
+    private void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.CompareTag("Tp"))
         {
-            print("Hola"); 
-            //quiero que me cambie la posición pero no lo hace, sin embargo, si me destruye la pelota.
-            Vector3 newPosition = new Vector3(0f, 0f, 0f);
-            mainObjectTransform.position = newPosition;
-        }
+            if (mainMaterial.color == col.gameObject.GetComponent<Renderer>().material.color)
+            {
 
+                canTp = true;
+
+            }
+        }
     }
 
     private void OnTriggerExit(Collider col)
