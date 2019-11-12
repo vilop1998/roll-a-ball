@@ -5,12 +5,16 @@ using UnityEngine;
 public class Keys : MonoBehaviour
 {
     public Material mainMaterial;
-    
+    public float constantRotation = 5f;
+    public Vector3 giro;
+
 
     void Start()
     {
         mainMaterial = GetComponent<Renderer>().material;
-        
+        giro = new Vector3(1f, 0f, 1f);
+
+
 
     }
 
@@ -26,4 +30,19 @@ public class Keys : MonoBehaviour
             }
         }
     }
+
+    private void Rotation()
+    {
+        
+        transform.Rotate(giro * constantRotation * Time.deltaTime);
+        
+        //gameObject.transform.rotation = new Vector3(0f + constantRotation, 0f + constantRotation, 0f + constantRotation);
+    }
+
+    void Update()
+    {
+        Rotation();
+        
+    }
+    
 }
